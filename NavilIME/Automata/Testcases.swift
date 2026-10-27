@@ -600,7 +600,7 @@ class Test002 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "z", expect_commit: ["zXX"], expect_preedit: ["zXX"])
         self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["zXX"], expect_preedit: [])
 
-        // ㅏ가 : 모음 뒤 자음은 새 글자의 초성 (이전: 가)
+        // ㅏ가 : 모음 뒤 자음은 새 글자의 초성 (이전: 가ㅏ)
         self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["XkX"])
         self.test_debug(hangul: hangul, t: "input", ch: "r", expect_commit: ["XkX"], expect_preedit: ["rXX"])
         self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["rkX"])
@@ -629,6 +629,24 @@ class Test002 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["skd"])
         self.test_debug(hangul: hangul, t: "input", ch: "y", expect_commit: ["skX"], expect_preedit: ["dyX"])
         self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["dyX"], expect_preedit: [])
+
+        // 왔다 : ㅆ을 치려고 시프트를 일찍 눌러서 ㅏ가 대문자로 입력된 경우 (이전: 오ㅏㅆ다)
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["dXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "h", expect_commit: [], expect_preedit: ["dhX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "K", expect_commit: [], expect_preedit: ["dhKX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "T", expect_commit: [], expect_preedit: ["dhKT"])
+        self.test_debug(hangul: hangul, t: "input", ch: "e", expect_commit: ["dhKT"], expect_preedit: ["eXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["ekX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["ekX"], expect_preedit: [])
+
+        // 않아 : 겹받침의 두 번째 자음이 대문자로 입력된 경우 (이전: 안ㅎ아)
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["dXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["dkX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: [], expect_preedit: ["dks"])
+        self.test_debug(hangul: hangul, t: "input", ch: "G", expect_commit: [], expect_preedit: ["dksG"])
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: ["dksG"], expect_preedit: ["dXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["dkX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["dkX"], expect_preedit: [])
     }
     
     

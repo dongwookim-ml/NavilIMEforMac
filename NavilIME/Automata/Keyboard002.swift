@@ -111,32 +111,36 @@ class Keyboard002 : Keyboard {
             "m":Jungsung.Eu, "M":Jungsung.Eu,
             
             // 이중 모음 (ㅘ,ㅙ,ㅝ,ㅞ,ㅚ,ㅟ,ㅢ)
-            "hk":Jungsung.Wa, "Hk":Jungsung.Wa, "HK":Jungsung.Wa,
+            // 시프트를 일찍 누르는 경우 (예: 왔다의 ㅆ을 치려고 ㅏ 전에 시프트를 누름) 를 위해 소문자 + 대문자 조합도 맵핑함
+            // 단 o, p 는 대문자가 ㅒ, ㅖ 이므로 소문자 + 대문자 조합을 맵핑 안함
+            "hk":Jungsung.Wa, "Hk":Jungsung.Wa, "HK":Jungsung.Wa, "hK":Jungsung.Wa,
             "ho":Jungsung.Wae, "Ho":Jungsung.Wae, "HO":Jungsung.Wae,
-            "nj":Jungsung.Weo, "Nj":Jungsung.Weo, "NJ":Jungsung.Weo,
+            "nj":Jungsung.Weo, "Nj":Jungsung.Weo, "NJ":Jungsung.Weo, "nJ":Jungsung.Weo,
             "np":Jungsung.We, "Np":Jungsung.We, "NP":Jungsung.We,
-            "hl":Jungsung.Oe, "Hl":Jungsung.Oe, "HL":Jungsung.Oe,
-            "nl":Jungsung.Wi, "Nl":Jungsung.Wi, "NL":Jungsung.Wi,
-            "ml":Jungsung.Yi, "Ml":Jungsung.Yi, "ML":Jungsung.Yi
+            "hl":Jungsung.Oe, "Hl":Jungsung.Oe, "HL":Jungsung.Oe, "hL":Jungsung.Oe,
+            "nl":Jungsung.Wi, "Nl":Jungsung.Wi, "NL":Jungsung.Wi, "nL":Jungsung.Wi,
+            "ml":Jungsung.Yi, "Ml":Jungsung.Yi, "ML":Jungsung.Yi, "mL":Jungsung.Yi
         ]
         
         // 종성 레이아웃
+        // 겹받침도 시프트를 일찍 누르는 경우를 위해 소문자 + 대문자 조합을 맵핑함
+        // 단 r, t, q, w 는 대문자가 쌍자음이므로 소문자 + 대문자 조합을 맵핑 안함
         self.jongsung_layout = [
             "r":Jongsung.Kiyeok,    // 쌍자음 있으므로 대문자 맵핑 안함
             "R":Jongsung.Ssangkiyeok,
             "rt":Jongsung.Kiyeoksios, "Rt":Jongsung.Kiyeoksios, "RT":Jongsung.Kiyeoksios,
             "s":Jongsung.Nieun, "S":Jongsung.Nieun,
             "sw":Jongsung.Nieuncieuc, "Sw":Jongsung.Nieuncieuc, "SW":Jongsung.Nieuncieuc,
-            "sg":Jongsung.Nieunhieuh, "Sg":Jongsung.Nieunhieuh, "SG":Jongsung.Nieunhieuh,
+            "sg":Jongsung.Nieunhieuh, "Sg":Jongsung.Nieunhieuh, "SG":Jongsung.Nieunhieuh, "sG":Jongsung.Nieunhieuh,
             "e":Jongsung.Tikeut, "E":Jongsung.Tikeut,
             "f":Jongsung.Rieul, "F":Jongsung.Rieul,
             "fr":Jongsung.Rieulkiyeok, "Fr":Jongsung.Rieulkiyeok, "FR":Jongsung.Rieulkiyeok,
-            "fa":Jongsung.Rieulmieum, "Fa":Jongsung.Rieulmieum, "FA":Jongsung.Rieulmieum,
+            "fa":Jongsung.Rieulmieum, "Fa":Jongsung.Rieulmieum, "FA":Jongsung.Rieulmieum, "fA":Jongsung.Rieulmieum,
             "fq":Jongsung.Rieulpieup, "Fq":Jongsung.Rieulpieup, "FQ":Jongsung.Rieulpieup,
             "ft":Jongsung.Rieulsios, "Ft":Jongsung.Rieulsios, "FT":Jongsung.Rieulsios,
-            "fx":Jongsung.Rieulthieuth, "Fx":Jongsung.Rieulthieuth, "FX":Jongsung.Rieulthieuth,
-            "fv":Jongsung.Rieulphieuph, "Fv":Jongsung.Rieulphieuph, "FV":Jongsung.Rieulphieuph,
-            "fg":Jongsung.Rieulhieuh, "Fg":Jongsung.Rieulhieuh, "FG":Jongsung.Rieulhieuh,
+            "fx":Jongsung.Rieulthieuth, "Fx":Jongsung.Rieulthieuth, "FX":Jongsung.Rieulthieuth, "fX":Jongsung.Rieulthieuth,
+            "fv":Jongsung.Rieulphieuph, "Fv":Jongsung.Rieulphieuph, "FV":Jongsung.Rieulphieuph, "fV":Jongsung.Rieulphieuph,
+            "fg":Jongsung.Rieulhieuh, "Fg":Jongsung.Rieulhieuh, "FG":Jongsung.Rieulhieuh, "fG":Jongsung.Rieulhieuh,
             "a":Jongsung.Mieum, "A":Jongsung.Mieum,
             "q":Jongsung.Pieup, "Q":Jongsung.Pieup,
             "qt":Jongsung.Pieupsios, "Qt":Jongsung.Pieupsios, "QT":Jongsung.Pieupsios,
