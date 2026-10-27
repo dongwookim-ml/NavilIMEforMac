@@ -590,6 +590,45 @@ class Test002 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "o", expect_commit: [], expect_preedit: ["goX"])
         self.test_debug(hangul: hangul, t: "input", ch: "T", expect_commit: [], expect_preedit: ["goT"])
         self.test_debug(hangul: hangul, t: "input", ch: "S", expect_commit: ["goT"], expect_preedit: ["SXX"])
+        // 이전 테스트에서 조합 중이던 'ㄴ'을 확정
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["SXX"], expect_preedit: [])
+
+        // ㅠㅠㅋㅋ : 모음만 있는 글자 뒤의 자음은 같은 글자의 초성/종성이 되지 않음 (이전: ㅠ큨)
+        self.test_debug(hangul: hangul, t: "input", ch: "b", expect_commit: [], expect_preedit: ["XbX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "b", expect_commit: ["XbX"], expect_preedit: ["XbX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "z", expect_commit: ["XbX"], expect_preedit: ["zXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "z", expect_commit: ["zXX"], expect_preedit: ["zXX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["zXX"], expect_preedit: [])
+
+        // ㅏ가 : 모음 뒤 자음은 새 글자의 초성 (이전: 가)
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["XkX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "r", expect_commit: ["XkX"], expect_preedit: ["rXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["rkX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["rkX"], expect_preedit: [])
+
+        // ㅘㄴ : 이중 모음만 있는 글자 뒤의 자음
+        self.test_debug(hangul: hangul, t: "input", ch: "h", expect_commit: [], expect_preedit: ["XhX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["XhkX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: ["XhkX"], expect_preedit: ["sXX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["sXX"], expect_preedit: [])
+
+        // ㅜㅜ어 : 모음 뒤 자음 입력 후 백스페이스
+        self.test_debug(hangul: hangul, t: "input", ch: "n", expect_commit: [], expect_preedit: ["XnX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "n", expect_commit: ["XnX"], expect_preedit: ["XnX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: ["XnX"], expect_preedit: ["dXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "//b", expect_commit: [], expect_preedit: [])
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["dXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "j", expect_commit: [], expect_preedit: ["djX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["djX"], expect_preedit: [])
+
+        // 아나요 : 초성+중성이 있는 글자는 기존처럼 받침과 도깨비불이 동작
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["dXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["dkX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "s", expect_commit: [], expect_preedit: ["dks"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: ["dkX"], expect_preedit: ["skX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["skd"])
+        self.test_debug(hangul: hangul, t: "input", ch: "y", expect_commit: ["skX"], expect_preedit: ["dyX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["dyX"], expect_preedit: [])
     }
     
     

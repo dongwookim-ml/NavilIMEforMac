@@ -153,8 +153,10 @@ class Keyboard002 : Keyboard {
     }
     
     override func chosung_proc(comp: inout Composition, ch: String) -> Bool {
-        // 기존 입력에 초성이 있고 중성도 있음
-        if comp.chosung != "" && comp.jungsung != "" {
+        // 기존 입력에 중성이 있음 (초성 유무와 상관없음)
+        // 두벌식은 자음 다음에 모음을 치므로 모음 뒤에 온 자음은 같은 글자의 초성이 될 수 없다.
+        // 초성 없이 모음만 있을 때 이걸 허용하면 ㅠ + ㅋ 이 '큐'로 합쳐진다. (ㅠㅠㅋㅋ -> ㅠ큨)
+        if comp.jungsung != "" {
             // 초성 테이블에서 더이상 검색하지 않음
             return false
         }
@@ -187,8 +189,9 @@ class Keyboard002 : Keyboard {
     }
     
     override func jongsung_proc(comp: inout Composition, ch: String) -> Bool {
-        // 중성이 없으면 검색하지 않음
-        if comp.jungsung == "" {
+        // 초성이나 중성이 없으면 검색하지 않음
+        // 모음만 있는 상태(ㅠ)에 자음이 오면 받침이 아니라 모음을 완성하고 새 글자를 시작한다.
+        if comp.chosung == "" || comp.jungsung == "" {
             return false
         }
         let jongkey:String = comp.jongsung + ch
