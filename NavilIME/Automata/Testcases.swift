@@ -639,6 +639,15 @@ class Test002 : TestCase {
         self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["ekX"])
         self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["ekX"], expect_preedit: [])
 
+        // 됐다 : ㅆ을 치려고 시프트를 일찍 눌러서 ㅐ가 대문자(ㅒ 키)로 입력된 경우 (이전: 도ㅒㅆ다)
+        self.test_debug(hangul: hangul, t: "input", ch: "e", expect_commit: [], expect_preedit: ["eXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "h", expect_commit: [], expect_preedit: ["ehX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "O", expect_commit: [], expect_preedit: ["ehOX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "T", expect_commit: [], expect_preedit: ["ehOT"])
+        self.test_debug(hangul: hangul, t: "input", ch: "e", expect_commit: ["ehOT"], expect_preedit: ["eXX"])
+        self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["ekX"])
+        self.test_debug(hangul: hangul, t: "flush", ch: "", expect_commit: ["ekX"], expect_preedit: [])
+
         // 않아 : 겹받침의 두 번째 자음이 대문자로 입력된 경우 (이전: 안ㅎ아)
         self.test_debug(hangul: hangul, t: "input", ch: "d", expect_commit: [], expect_preedit: ["dXX"])
         self.test_debug(hangul: hangul, t: "input", ch: "k", expect_commit: [], expect_preedit: ["dkX"])
